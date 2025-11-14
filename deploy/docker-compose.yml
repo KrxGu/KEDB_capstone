@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: ankane/pgvector:latest
+    container_name: kedb-postgres
+    environment:
+      POSTGRES_DB: kedb
+      POSTGRES_USER: kedb
+      POSTGRES_PASSWORD: kedb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kedb -d kedb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7.2
+    container_name: kedb-redis
+    ports:
+      - "6379:6379"
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.7
+    container_name: kedb-meilisearch
+    environment:
+      MEILI_NO_ANALYTICS: "true"
+      MEILI_MASTER_KEY: ${MEILISEARCH_MASTER_KEY:-local_master_key}
+    ports:
+      - "7700:7700"
+
+  api:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    container_name: kedb-api
+    env_file: ../.env
+    depends_on:
+      - postgres
+      - redis
+      - meilisearch
+    ports:
+      - "8080:8080"
+    command: ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+  worker:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    container_name: kedb-worker
+    env_file: ../.env
+    depends_on:
+      - redis
+      - postgres
+    command: ["poetry", "run", "rq", "worker", "default"]
+
+volumes:
+  postgres-data:

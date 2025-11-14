@@ -1,0 +1,3 @@
+"""
+KEDB backend application package.
+"""

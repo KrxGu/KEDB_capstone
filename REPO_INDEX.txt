@@ -1,0 +1,148 @@
+================================================================================
+KEDB PLATFORM - REPOSITORY INDEX
+================================================================================
+Generated: 2025-11-14
+Purpose: Comprehensive index of all code and configuration files (excluding .md)
+================================================================================
+
+ROOT LEVEL
+================================================================================
+./setup_phase_a.sh                    # Automated setup script for Phase A
+
+DEPLOYMENT & INFRASTRUCTURE
+================================================================================
+./deploy/docker-compose.yml           # Docker services: PostgreSQL, Redis, Meilisearch
+
+BACKEND APPLICATION
+================================================================================
+
+Configuration Files
+--------------------------------------------------------------------------------
+./backend/pyproject.toml              # Poetry dependencies & project metadata
+./backend/poetry.lock                 # Locked dependency versions
+./backend/alembic.ini                 # Database migration configuration
+./backend/Dockerfile                  # Container build instructions
+
+Core Application
+--------------------------------------------------------------------------------
+./backend/app/__init__.py             # Application package initialization
+./backend/app/main.py                 # FastAPI application entry point
+
+Core Infrastructure
+--------------------------------------------------------------------------------
+./backend/app/core/__init__.py        # Core package initialization
+./backend/app/core/config.py          # Settings and environment configuration
+./backend/app/core/database.py        # Database session and connection management
+./backend/app/core/logging.py         # Logging configuration
+
+API Layer
+--------------------------------------------------------------------------------
+./backend/app/api/__init__.py         # API package initialization
+./backend/app/api/deps.py             # Dependency injection utilities
+./backend/app/api/v1/__init__.py      # API v1 package initialization
+./backend/app/api/v1/router.py        # API v1 main router
+./backend/app/api/v1/endpoints/__init__.py              # Endpoints package
+./backend/app/api/v1/endpoints/health.py                # Health check endpoint
+
+Database Models (SQLAlchemy ORM)
+--------------------------------------------------------------------------------
+./backend/app/models/__init__.py      # Models package initialization
+./backend/app/models/base.py          # Base model classes and mixins
+./backend/app/models/entry.py         # Entry, EntrySymptom, EntryIncident models
+./backend/app/models/solution.py      # Solution, SolutionStep models
+./backend/app/models/tag.py           # Tag, EntryTag models
+./backend/app/models/embedding.py     # EntryEmbedding, SolutionEmbedding models
+./backend/app/models/agent.py         # AgentSession, AgentCall, AgentSuggestion, PolicyDecision
+./backend/app/models/review.py        # Review, ReviewParticipant models
+./backend/app/models/audit.py         # AuditLog, SuggestionEvent models
+./backend/app/models/utility.py       # Prompt, Attachment, Synonym models
+
+Schemas (Pydantic)
+--------------------------------------------------------------------------------
+./backend/app/schemas/__init__.py     # Schemas package initialization
+
+Services
+--------------------------------------------------------------------------------
+./backend/app/services/__init__.py    # Business logic services
+
+Search Integration
+--------------------------------------------------------------------------------
+./backend/app/search/__init__.py      # Search engine integration (Meilisearch + pgvector)
+
+AI Agent
+--------------------------------------------------------------------------------
+./backend/app/agent/__init__.py       # AI agent logic and LLM integration
+
+Background Workers
+--------------------------------------------------------------------------------
+./backend/app/workers/__init__.py     # RQ async task workers
+
+Utilities
+--------------------------------------------------------------------------------
+./backend/app/utils/__init__.py       # Utility functions
+
+Database Migrations (Alembic)
+================================================================================
+./backend/alembic/env.py              # Migration environment configuration
+./backend/alembic/script.py.mako      # Migration script template
+./backend/alembic/versions/457f09125f49_initial_schema_with_all_tables.py
+                                      # Initial database schema migration
+
+Tests
+================================================================================
+./backend/tests/__init__.py           # Test package initialization
+./backend/tests/test_health.py        # Health endpoint tests
+
+Architecture Diagrams & Plans
+================================================================================
+./plan/agent_layer.jpeg               # AI agent architecture diagram
+./plan/Architecture_diag.jpeg         # System architecture diagram
+./plan/deployment_plan.jpeg           # Deployment architecture
+./plan/sequence_autodraft.jpeg        # Auto-draft sequence flow
+./plan/sequence_flow.jpeg             # General sequence flow diagram
+
+================================================================================
+FILE COUNT SUMMARY
+================================================================================
+Python Source Files: 28
+Configuration Files: 4
+Migration Files: 3
+Docker/Deployment: 1
+Scripts: 1
+Diagrams: 5
+--------------------------------------------------------------------------------
+Total Indexed Files: 42
+================================================================================
+
+TECHNOLOGY STACK
+================================================================================
+Backend Framework:     FastAPI
+ORM:                   SQLAlchemy 2.0
+Database:              PostgreSQL 16 + pgvector
+Search:                Meilisearch (BM25) + pgvector (semantic)
+Queue:                 Redis + RQ
+AI:                    OpenAI/Anthropic
+Package Manager:       Poetry
+Migrations:            Alembic
+Testing:               pytest
+Containerization:      Docker
+
+================================================================================
+KEY DIRECTORIES
+================================================================================
+/backend/app/models/      - 9 model files defining 21 database tables
+/backend/app/api/         - API endpoints and routing
+/backend/app/core/        - Core infrastructure (config, database, logging)
+/backend/alembic/         - Database migration scripts
+/backend/tests/           - Test suite
+/deploy/                  - Docker infrastructure
+/plan/                    - Architecture documentation (diagrams)
+
+================================================================================
+DEVELOPMENT PHASES
+================================================================================
+Phase A (Complete):      Database schema, Docker setup, health checks
+Next Phases:             CRUD endpoints, search, AI agent, workflow, analytics
+
+================================================================================
+

@@ -1,0 +1,24 @@
+# General
+.DS_Store
+.env
+.env.*
+__pycache__/
+*.pyc
+
+# Python tooling
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Poetry / build
+poetry.lock
+dist/
+build/
+
+# VSCode / IDE
+.idea/
+.vscode/
+
+# Containers
+docker-data/

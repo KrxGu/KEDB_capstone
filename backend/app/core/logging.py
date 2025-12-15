@@ -29,3 +29,7 @@ def setup_logging(log_level: str = "INFO") -> None:
         logger_factory=structlog.PrintLoggerFactory(),
         cache_logger_on_first_use=True,
     )
+
+
+# Global logger instance for use throughout the application
+logger = structlog.get_logger()
